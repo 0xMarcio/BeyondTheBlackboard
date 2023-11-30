@@ -1,4 +1,4 @@
-# BeyondTheBlackboard: Unraveling the Mysteries of Physics through Python
+# BeyondTheBlackboard
 
 This repository is an expansive collection of Python scripts and notebooks dedicated to exploring, simulating, and solving complex problems in physics. From the microscopic quirks of quantum mechanics to the vast complexities of astrophysics, each script in this collection takes you on a journey beyond the traditional blackboard, into a world where theoretical concepts meet practical, executable code.
 
