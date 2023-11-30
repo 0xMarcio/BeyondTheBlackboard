@@ -24,4 +24,4 @@ revolutions_rolling = C_B / C_A
 # Adding the extra revolution due to the circular path
 total_revolutions = revolutions_rolling + 1
 
-total_revolutions.simplify()
+print(total_revolutions.simplify())
