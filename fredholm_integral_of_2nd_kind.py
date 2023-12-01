@@ -40,3 +40,4 @@ plt.ylabel('f(x)')
 plt.title('Solution of Fredholm Integral Equation of the Second Kind')
 plt.legend()
 plt.show()
+
