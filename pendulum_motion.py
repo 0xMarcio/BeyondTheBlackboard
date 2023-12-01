@@ -1,29 +1,46 @@
-#!/usr/bin/env python3
 import numpy as np
-import sys
+from scipy.integrate import solve_ivp
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
-# Physical constants
-g = 9.81  # m/s^2
-L = 2  # m
-mu = 0.1  # friction coefficient
+# Constants and initial conditions
+g = 9.81  # Acceleration due to gravity (m/s^2)
+L = 2  # Length of the pendulum (meters)
+theta0 = np.pi / 4  # Initial angle (45 degrees)
+omega0 = 0  # Initial angular velocity
 
-THETA_0 = np.pi / 2  # Initial angle
-THETA_DOT_0 = 0  # Initial angular velocity
+# Time span
+t_max = 10  # Total time of simulation (seconds)
+time = np.linspace(0, t_max, 300)  # Time points for the simulation
 
-# Definition of ODE
-def get_theta_double_dot(theta, theta_dot):
-    return -mu * theta_dot - (g / L) * np.sin(theta)
+# Differential equation for the pendulum's motion
+def pendulum_equation(t, y):
+    theta, omega = y
+    dtheta_dt = omega
+    domega_dt = -(g / L) * np.sin(theta)
+    return [dtheta_dt, domega_dt]
 
-# Solution to the differential equation
-def theta(t):
-    theta = THETA_0
-    theta_dot = THETA_DOT_0
-    delta_t = 0.01  # Time step
-    for time in np.arange(0, t, delta_t):
-        theta_double_dot = get_theta_double_dot(theta, theta_dot)
-        theta += theta_dot * delta_t
-        theta_dot += theta_double_dot * delta_t
-    return theta
+# Solving the differential equation
+solution = solve_ivp(pendulum_equation, [0, t_max], [theta0, omega0], t_eval=time)
 
-# Print the solution
-print(theta(float(sys.argv[1])))
+# Extracting the solution
+theta = solution.y[0]
+
+# Converting polar coordinates to Cartesian coordinates for animation
+x = L * np.sin(theta)
+y = -L * np.cos(theta)
+
+# Animation function
+def animate(i):
+    plt.clf()
+    plt.plot([0, x[i]], [0, y[i]], color='b')  # Pendulum rod
+    plt.scatter([x[i]], [y[i]], color='r')  # Pendulum bob
+    plt.xlim(-L, L)
+    plt.ylim(-L, L)
+    plt.title("Simple Pendulum Motion")
+    plt.gca().set_aspect('equal', adjustable='box')
+
+# Creating the animation
+ani = FuncAnimation(plt.gcf(), animate, frames=len(time), interval=100, repeat=False)
+
+plt.show()
