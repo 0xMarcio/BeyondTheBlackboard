@@ -3,3 +3,4 @@ seaborn
 pandas
 statsmodels
 scipy
+plotly
