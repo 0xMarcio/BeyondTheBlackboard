@@ -37,7 +37,7 @@ dt = 60 * 60 * 24  # One day
 
 # Create the plot
 fig, ax = plt.subplots()
-lines = [ax.plot([], [], 'o', markersize=mass**(1/3) / 1e8)[0] for mass in masses]
+lines = [ax.plot([], [], 'o', markersize=mass**(1/3.05) / 1e8)[0] for mass in masses]
 
 # Set plot limits and labels
 ax.set_xlim(-1.5e11, 1.5e11)
@@ -57,7 +57,7 @@ def animate(i):
     global pos, vel
     pos, vel = update_positions(dt, pos, vel, masses)
     for line, p in zip(lines, pos):
-        line.set_data(p[0], p[1])
+        line.set_data([p[0]], [p[1]])
     return lines
 
 # Create the animation
