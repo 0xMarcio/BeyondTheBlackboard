@@ -49,7 +49,7 @@ def update(frame):
     """Update the positions of the planets and their orbits for the animation."""
     for planet, params in planets.items():
         x, y = planet_position(params['a'], params['T'], frame)
-        planet_plots[planet].set_data(x, y)
+        planet_plots[planet].set_data([x], [y])
         
         # Update orbit paths
         if len(orbit_paths[planet].get_xdata()) > 0:
