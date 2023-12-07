@@ -40,5 +40,5 @@ def plot_twin_primes_plotly(limit):
 
     fig.show()
 
-# Visualize twin primes up to 10000 using Plotly
-plot_twin_primes_plotly(10000)
+# Visualize twin primes up to 5000 using Plotly
+plot_twin_primes_plotly(5000)
