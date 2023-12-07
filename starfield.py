@@ -68,7 +68,7 @@ num_stars = 50
 max_brightness = 255
 psf_size = 21
 std_dev = 3
-deconv_iterations = 30
+deconv_iterations = 200
 
 # Generate simulated starfield and PSF
 starfield = generate_starfield(image_size, num_stars, max_brightness)
