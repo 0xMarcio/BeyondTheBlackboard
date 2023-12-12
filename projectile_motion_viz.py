@@ -63,3 +63,4 @@ print(f"Range: {rng:.2f} m")
 
 # Plot trajectory
 plot_trajectory(x, y, v0, theta)
+
